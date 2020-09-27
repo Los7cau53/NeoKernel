@@ -130,3 +130,7 @@ kernel/configs/android-*.cfg
 
 # Ignore compiled objects
 obj
+
+#los7
+/prebuilts/
+/out/

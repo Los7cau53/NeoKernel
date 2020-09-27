@@ -10,11 +10,22 @@ clone() {
 		echo "|| Cloning Clang-11 ||"
 		git clone --depth=1 https://github.com/kdrag0n/proton-clang.git prebuilts/proton-clang
 }
+clean() {
+	if [ $INCREMENTAL = 0 ]
+	then
+		echo "**** Cleaning ****"
+        make clean && make mrproper && rm -rf out
+        mkdir -p out
+        make O=out clean
+	fi
+}
 clone
+INCREMENTAL=0
+clean
 KERNELDIR=$PWD
 KERNEL_DEFCONFIG=phoenix_defconfig
 ANYKERNEL3_DIR=$PWD/AnyKernel3/
-FINAL_KERNEL_ZIP=Optimus_Drunk_Phoenix_v10.26.zip
+FINAL_KERNEL_ZIP=Neo_Phoenix_v1.0.zip
 export PATH="$KERNELDIR/prebuilts/proton-clang/bin:${PATH}"
 export ARCH=arm64
 export SUBARCH=arm64
@@ -30,9 +41,9 @@ red='\033[0;31m'
 nocol='\033[0m'
 
 # Clean build always lol
-echo "**** Cleaning ****"
-mkdir -p out
-make O=out clean
+#echo "**** Cleaning ****"
+#mkdir -p out
+#make O=out clean
 
 echo "**** Kernel defconfig is set to $KERNEL_DEFCONFIG ****"
 echo -e "$blue***********************************************"
