@@ -3,6 +3,15 @@
 #set -e
 
 ## Copy this script inside the kernel directory
+clone() {
+	echo " "
+	
+	
+		echo "|| Cloning Clang-11 ||"
+		git clone --depth=1 https://github.com/kdrag0n/proton-clang.git prebuilts/proton-clang
+}
+clone
+KERNELDIR=$PWD
 KERNEL_DEFCONFIG=phoenix_defconfig
 ANYKERNEL3_DIR=$PWD/AnyKernel3/
 FINAL_KERNEL_ZIP=Optimus_Drunk_Phoenix_v10.26.zip
